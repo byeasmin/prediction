@@ -124,7 +124,7 @@ async def get_environmental_intelligence(
     lon: float = Query(..., ge=-180, le=180, description="Longitude of the location."),
     start: date = Query("2025-01-01", description="Start date for analysis (YYYY-MM-DD)."),
     end: date = Query("2025-01-07", description="End date for analysis (YYYY-MM-DD)."),
-    query: str = Query("summarize climate risks", description="Question or analysis request for Gemini AI."),
+    query: str = Query("summarize climate risks", description="Question or analysis request for prediction."),
 ):
     nasa_summary = await fetch_nasa_power_data(lat, lon, start, end)
 
@@ -158,7 +158,7 @@ async def post_environmental_intelligence(
     lon: float = Form(..., description="Longitude of the location."),
     start: date = Form(..., description="Start date for analysis (YYYY-MM-DD)."),
     end: date = Form(..., description="End date for analysis (YYYY-MM-DD)."),
-    query: str = Form("analyze environment with image", description="User query for Gemini AI."),
+    query: str = Form("analyze environment with image", description="User query for prediction."),
     file: UploadFile = File(..., description="Optional image file to include in the analysis."),
 ):
     nasa_summary = await fetch_nasa_power_data(lat, lon, start, end)
